@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8552e22807defe641ba74bc862d1951f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpead: 5
+  runSpead: 8
   jumpSpeed: 28
+  climbSpeed: 5
 --- !u!212 &212892390783327054
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -141,7 +142,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006739291
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300016, guid: 8ace4c4e0015f624aaf7f36657591619, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
