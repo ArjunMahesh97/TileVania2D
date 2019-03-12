@@ -13,11 +13,14 @@ public class Player : MonoBehaviour {
     Animator myAnimator;
     Collider2D myCollider;
 
+    float gravityStart;
+
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myCollider = GetComponent<Collider2D>();
+        gravityStart = myRigidbody.gravityScale;
 	}
 	
 	// Update is called once per frame
@@ -41,11 +44,14 @@ public class Player : MonoBehaviour {
     {
         if (!myCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
+            myAnimator.SetBool("Climbing", false);
+            myRigidbody.gravityScale = gravityStart;
             return;
         }
         float controlThrow = CrossPlatformInputManager.GetAxis("Vertical");
         Vector2 climbVelocity = new Vector2(myRigidbody.velocity.x, controlThrow * climbSpeed);
         myRigidbody.velocity = climbVelocity;
+        myRigidbody.gravityScale = 0f;
 
         bool playerHasVerticalSpeed = Mathf.Abs(myRigidbody.velocity.y) > Mathf.Epsilon;
         myAnimator.SetBool("Climbing", playerHasVerticalSpeed);
