@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathkick = new Vector2(25f, 25f);
+    [SerializeField] int DeathDelay = 2;
 
     Rigidbody2D myRigidbody;
     Animator myAnimator;
@@ -92,7 +93,12 @@ public class Player : MonoBehaviour {
             myAnimator.SetTrigger("Dying");
             GetComponent<Rigidbody2D>().velocity = deathkick;
             isAlive = false;
-            FindObjectOfType<GameSession>().ProcessPlayerDeath();
+            Invoke("ProcessDeath",DeathDelay);
         }
+    }
+
+    void ProcessDeath()
+    {
+        FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
 }
